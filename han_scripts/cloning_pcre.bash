@@ -18,8 +18,8 @@
 #
 #   author  : Jeong Han Lee
 #   email   : jeonghan.lee@gmail.com
-#   date    : Tuesday, December 12 17:44:34 CET 2017
-#   version : 0.1.2
+#   date    : Wednesday, February 14 00:48:31 CET 2018
+#   version : 0.0.1
 
 declare -gr SC_SCRIPT="$(realpath "$0")"
 declare -gr SC_SCRIPTNAME=${0##*/}
@@ -48,10 +48,10 @@ declare -ga version2_list=()
 #version_list+=("8.41")
 
 #version2_list+=("10.21")
-version2_list+=("10.22")
-version2_list+=("10.23")
-version2_list+=("10.30")
-version2_list+=("10.31")
+#version2_list+=("10.22")
+#version2_list+=("10.23")
+#version2_list+=("10.30")
+#version2_list+=("10.31")
 
 
 function extract_file
@@ -87,20 +87,22 @@ function do_git
 
 ${GIT_CMD} ${GIT_URL} ${REPO_PATH}
 
-# pushd ${REPO_PATH}
-# git checkout -b test
-# popd
 
-#for rep in  ${version_list[@]}; do
-#     extract_file "${FILE_PREFIX}" "${rep}"
-#done
-
-
-for rep in  ${version2_list[@]}; do
-    extract_file "${FILE2_PREFIX}" "${rep}"
-    do_git  "${FILE2_PREFIX}" "${rep}"
+# for rep in  ${version2_list[@]}; do
+#     extract_file "${FILE2_PREFIX}" "${rep}"
+#     do_git  "${FILE2_PREFIX}" "${rep}"
     
-done
+# done
 
 
-    
+### # pcre2-10.XX
+# version=$1
+
+# extract_file "${FILE2_PREFIX}" "${version}"
+# do_git  "${FILE2_PREFIX}" "${version}"
+
+#### pcre-8.XX
+version=$1
+
+extract_file "${FILE_PREFIX}" "${version}"
+do_git  "${FILE_PREFIX}" "${version}"
